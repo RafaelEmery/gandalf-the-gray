@@ -22,6 +22,14 @@ poetry env use 3.12.0
 poetry install --no-root
 ```
 
+### Testing project
+
+```bash
+cp .env.example .env
+
+make hello
+```
+
 ### Install and run Ollama (MacOS)
 
 To install and test `qwen2.5:3b` (optimized for Mac Air M1 8Gb):
