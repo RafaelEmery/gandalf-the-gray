@@ -38,12 +38,14 @@ def prepare_chunks(pdf: Path, text: str) -> tuple[list[str], list[dict], list[st
     return ids, metadatas, texts
 
 
-def index_pdf(pdf: Path, embedder: EmbeddingModel, vector_repository: VectorRepository) -> None:
+def index_pdf(
+    pdf: Path, embedder: EmbeddingModel, vector_repository: VectorRepository
+) -> None:
     """
     Extract text from a PDF, chunk it, generate embeddings, and add to the vector repository.
     """
     print(f"[blue]Indexer: Indexing {pdf.name}[/blue]")
-    
+
     text = extract_text_from_pdf(pdf)
     ids, metadatas, texts = prepare_chunks(pdf, text)
 
@@ -92,5 +94,5 @@ if __name__ == "__main__":
         "--force-reset", action="store_true", help="Reset index before building"
     )
     args = parser.parse_args()
-    
-    build_index(force_reset=args.force_reset) 
+
+    build_index(force_reset=args.force_reset)

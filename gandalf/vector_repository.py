@@ -1,5 +1,4 @@
 import chromadb
-from chromadb.config import Settings
 from typing import List, Dict, Any
 from .settings import settings
 from rich import print
@@ -7,10 +6,12 @@ from rich import print
 
 class VectorRepository:
     def __init__(self, persist_directory: str = None):
-        print(f"[blue]VectorRepository: Initializing with persist_directory={persist_directory}[/blue]")
-        
+        print(
+            f"[blue]VectorRepository: Initializing with persist_directory={persist_directory}[/blue]"
+        )
+
         persist_directory = persist_directory or str(settings.INDEX_DIR)
-        
+
         self._client = chromadb.PersistentClient(path=persist_directory)
         self._collection = self._client.get_or_create_collection(
             name=settings.CHROMA_COLLECTION
@@ -38,7 +39,9 @@ class VectorRepository:
 
     def reset(self) -> None:
         """Deletes and recreates the collection, effectively resetting the index."""
-        print(f"[red]VectorRepository: Resetting collection {settings.CHROMA_COLLECTION}[/red]")
+        print(
+            f"[red]VectorRepository: Resetting collection {settings.CHROMA_COLLECTION}[/red]"
+        )
         try:
             self._client.delete_collection(name=settings.CHROMA_COLLECTION)
         except Exception:
