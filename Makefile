@@ -9,3 +9,6 @@ format:
 
 hello:
 	@poetry run python -m gandalf.hello
+
+index:
+	@poetry run python -m gandalf.indexer
