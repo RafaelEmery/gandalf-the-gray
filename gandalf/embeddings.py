@@ -19,4 +19,5 @@ class EmbeddingModel:
         return [emb.tolist() for emb in embeddings]
 
     def embed_query(self, text: str) -> List[float]:
+        """Embeds a single query text into a vector."""
         return self.model.encode(text, convert_to_numpy=True).tolist()

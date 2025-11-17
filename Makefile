@@ -12,3 +12,9 @@ hello:
 
 index:
 	@poetry run python -m gandalf.indexer
+
+ollama:
+	@ollama serve
+
+chat:
+	@poetry run python -m gandalf.chat

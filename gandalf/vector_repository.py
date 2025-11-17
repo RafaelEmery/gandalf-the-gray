@@ -6,9 +6,10 @@ from rich import print
 
 class VectorRepository:
     def __init__(self, persist_directory: str = None):
-        print(
-            f"[blue]VectorRepository: Initializing with persist_directory={persist_directory}[/blue]"
-        )
+        if persist_directory:
+            print(
+                f"[blue]VectorRepository: Initializing with persist_directory={persist_directory}[/blue]"
+            )
 
         persist_directory = persist_directory or str(settings.INDEX_DIR)
 

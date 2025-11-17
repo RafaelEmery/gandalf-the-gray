@@ -54,4 +54,11 @@ Add the PDF file you want to index to the `data/files/` folder and run:
 make index
 ```
 
+### Start the chat
 
+Open another terminal to serve Ollama and run the interactive chat interface:
+```bash
+make ollama
+
+make chat
+```

@@ -7,7 +7,7 @@ from rich import print
 from pathlib import Path
 
 
-def _ensure_directories() -> None:
+def ensure_directories() -> None:
     """Ensure that index and files directories exist."""
     settings.INDEX_DIR.mkdir(parents=True, exist_ok=True)
     settings.FILES_DIR.mkdir(parents=True, exist_ok=True)
@@ -60,7 +60,7 @@ def build_index(force_reset: bool = False) -> None:
     """
     Build or refresh the vector index from all PDFs in the files directory.
     """
-    _ensure_directories()
+    ensure_directories()
     repository = VectorRepository(persist_directory=str(settings.INDEX_DIR))
 
     if force_reset:

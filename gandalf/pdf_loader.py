@@ -26,10 +26,10 @@ def extract_text_from_pdf(path: Path) -> str:
             if page_text:
                 text_parts.append(page_text)
     raw = "\n\n".join(text_parts)
-    return _clean_extracted_text(raw)
+    return clean_extracted_text(raw)
 
 
-def _should_join_lines(new_lines: list, current_line: str) -> bool:
+def should_join_lines(new_lines: list, current_line: str) -> bool:
     """
     Heuristic to decide if the current line should be joined to the previous one.
 
@@ -45,7 +45,7 @@ def _should_join_lines(new_lines: list, current_line: str) -> bool:
     return new_lines and new_lines[-1] and re.match(r"[a-z0-9,.]$", new_lines[-1], re.I)
 
 
-def _clean_extracted_text(text: str) -> str:
+def clean_extracted_text(text: str) -> str:
     """Performs simple cleanup of headers/footers and repeated whitespace.
 
     This is intentionally conservative — for production you may tailor to your PDFs.
@@ -61,7 +61,7 @@ def _clean_extracted_text(text: str) -> str:
         if not ln:
             new_lines.append("")
             continue
-        if _should_join_lines(new_lines, ln):
+        if should_join_lines(new_lines, ln):
             new_lines[-1] = new_lines[-1] + " " + ln
         else:
             new_lines.append(ln)
