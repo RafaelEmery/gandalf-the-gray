@@ -3,6 +3,9 @@
 .ruff_cache/
 __pycache__/
 .DS_Store
-data/index/
+
+
+data/index/*
+!data/index/.gitkeep
 
 .env
